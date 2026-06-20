@@ -1,0 +1,563 @@
+openapi: 3.0.1
+info:
+  title: Hyperline API
+  description: >-
+    The Hyperline API follows REST principles and uses JSON-encoded request and
+    response payloads. It powers usage-based billing and subscription management
+    for B2B SaaS - covering customers, products and plans, subscriptions,
+    billable event ingestion, invoices, payments, credit notes, and webhooks.
+    The full machine-readable specification is published by Hyperline at
+    https://api.hyperline.co/openapi.
+  termsOfService: https://www.hyperline.co/legal/terms
+  contact:
+    name: Hyperline Support
+    url: https://docs.hyperline.co
+  version: '1.0'
+servers:
+  - url: https://api.hyperline.co/v1
+    description: Production
+  - url: https://sandbox.api.hyperline.co/v1
+    description: Sandbox
+security:
+  - bearerAuth: []
+tags:
+  - name: Customers
+  - name: Products
+  - name: Subscriptions
+  - name: Billable Events
+  - name: Invoices
+  - name: Payments
+  - name: Webhooks
+paths:
+  /customers:
+    get:
+      operationId: listCustomers
+      tags: [Customers]
+      summary: List customers
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+        - name: starting_after
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A paginated list of customers.
+    post:
+      operationId: createCustomer
+      tags: [Customers]
+      summary: Create a customer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+      responses:
+        '201':
+          description: The created customer.
+  /customers/{id}:
+    get:
+      operationId: getCustomer
+      tags: [Customers]
+      summary: Retrieve a customer
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: The requested customer.
+    patch:
+      operationId: updateCustomer
+      tags: [Customers]
+      summary: Update a customer
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+      responses:
+        '200':
+          description: The updated customer.
+    delete:
+      operationId: deleteCustomer
+      tags: [Customers]
+      summary: Delete a customer (must be archived first)
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '204':
+          description: Customer deleted.
+  /customers/{id}/archive:
+    post:
+      operationId: archiveCustomer
+      tags: [Customers]
+      summary: Archive a customer
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: The archived customer.
+  /customers/{id}/credits:
+    get:
+      operationId: listCustomerCredits
+      tags: [Customers]
+      summary: List a customer's credits
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: A list of customer credits.
+    post:
+      operationId: createCustomerCredit
+      tags: [Customers]
+      summary: Grant a credit to a customer
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '201':
+          description: The created credit.
+  /customers/{id}/usage/{aggregatorId}:
+    get:
+      operationId: getCustomerUsage
+      tags: [Customers]
+      summary: Get aggregated usage for a customer
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+        - name: aggregatorId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Aggregated usage for the customer.
+  /products:
+    get:
+      operationId: listProducts
+      tags: [Products]
+      summary: List products
+      responses:
+        '200':
+          description: A list of products.
+    post:
+      operationId: createProduct
+      tags: [Products]
+      summary: Create a product
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        '201':
+          description: The created product.
+  /products/{id}:
+    get:
+      operationId: getProduct
+      tags: [Products]
+      summary: Retrieve a product
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: The requested product.
+    patch:
+      operationId: updateProduct
+      tags: [Products]
+      summary: Update a product
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: The updated product.
+  /price-books:
+    get:
+      operationId: listPriceBooks
+      tags: [Products]
+      summary: List price books
+      responses:
+        '200':
+          description: A list of price books.
+    post:
+      operationId: createPriceBook
+      tags: [Products]
+      summary: Create a price book
+      responses:
+        '201':
+          description: The created price book.
+  /subscriptions:
+    get:
+      operationId: listSubscriptions
+      tags: [Subscriptions]
+      summary: List subscriptions
+      responses:
+        '200':
+          description: A list of subscriptions.
+    post:
+      operationId: createSubscription
+      tags: [Subscriptions]
+      summary: Create a subscription
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Subscription'
+      responses:
+        '201':
+          description: The created subscription.
+  /subscriptions/{id}:
+    get:
+      operationId: getSubscription
+      tags: [Subscriptions]
+      summary: Retrieve a subscription
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: The requested subscription.
+    patch:
+      operationId: updateSubscription
+      tags: [Subscriptions]
+      summary: Update a subscription
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: The updated subscription.
+  /subscriptions/{id}/activate:
+    post:
+      operationId: activateSubscription
+      tags: [Subscriptions]
+      summary: Activate a subscription
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: The activated subscription.
+  /subscriptions/{id}/cancel:
+    post:
+      operationId: cancelSubscription
+      tags: [Subscriptions]
+      summary: Cancel a subscription
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: The cancelled subscription.
+  /subscriptions/{id}/pause:
+    post:
+      operationId: pauseSubscription
+      tags: [Subscriptions]
+      summary: Pause a subscription
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: The paused subscription.
+  /subscriptions/refresh:
+    post:
+      operationId: refreshSubscriptions
+      tags: [Subscriptions]
+      summary: Refresh subscriptions usage data and related open invoices
+      responses:
+        '202':
+          description: Refresh accepted.
+  /billable-events:
+    get:
+      operationId: listBillableEvents
+      tags: [Billable Events]
+      summary: Retrieve billable events
+      responses:
+        '200':
+          description: A list of billable events.
+    post:
+      operationId: ingestBillableEvents
+      tags: [Billable Events]
+      summary: Ingest one or more billable events
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BillableEvent'
+      responses:
+        '201':
+          description: Events ingested.
+    delete:
+      operationId: deleteBillableEvents
+      tags: [Billable Events]
+      summary: Delete billable events
+      responses:
+        '204':
+          description: Events deleted.
+  /billable-events/simulate-prices:
+    post:
+      operationId: simulateBillableEventPrices
+      tags: [Billable Events]
+      summary: Simulate prices for billable events
+      responses:
+        '200':
+          description: Simulated pricing result.
+  /invoices:
+    get:
+      operationId: listInvoices
+      tags: [Invoices]
+      summary: List invoices
+      responses:
+        '200':
+          description: A list of invoices.
+    post:
+      operationId: createInvoice
+      tags: [Invoices]
+      summary: Create an invoice
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Invoice'
+      responses:
+        '201':
+          description: The created invoice.
+  /invoices/{id}:
+    get:
+      operationId: getInvoice
+      tags: [Invoices]
+      summary: Retrieve an invoice
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: The requested invoice.
+    patch:
+      operationId: updateInvoice
+      tags: [Invoices]
+      summary: Update an invoice
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: The updated invoice.
+  /invoices/{id}/charge:
+    post:
+      operationId: chargeInvoice
+      tags: [Invoices]
+      summary: Charge an invoice
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: The charged invoice.
+  /invoices/{id}/void:
+    post:
+      operationId: voidInvoice
+      tags: [Invoices]
+      summary: Void an invoice
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: The voided invoice.
+  /invoices/{id}/credit-notes:
+    post:
+      operationId: createCreditNote
+      tags: [Invoices]
+      summary: Issue a credit note against an invoice
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '201':
+          description: The created credit note.
+  /invoices/{id}/download:
+    get:
+      operationId: downloadInvoice
+      tags: [Invoices]
+      summary: Download an invoice PDF
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: The invoice document.
+  /payments:
+    post:
+      operationId: createPayment
+      tags: [Payments]
+      summary: Record a payment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Payment'
+      responses:
+        '201':
+          description: The recorded payment.
+  /transactions/{id}/refund:
+    post:
+      operationId: refundTransaction
+      tags: [Payments]
+      summary: Refund a transaction
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: The refunded transaction.
+  /webhook-endpoints:
+    get:
+      operationId: listWebhookEndpoints
+      tags: [Webhooks]
+      summary: List webhook endpoints
+      responses:
+        '200':
+          description: A list of webhook endpoints.
+    post:
+      operationId: createWebhookEndpoint
+      tags: [Webhooks]
+      summary: Create a webhook endpoint
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookEndpoint'
+      responses:
+        '201':
+          description: The created webhook endpoint.
+  /webhook-endpoints/{id}:
+    patch:
+      operationId: updateWebhookEndpoint
+      tags: [Webhooks]
+      summary: Update a webhook endpoint
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: The updated webhook endpoint.
+    delete:
+      operationId: deleteWebhookEndpoint
+      tags: [Webhooks]
+      summary: Delete a webhook endpoint
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '204':
+          description: Webhook endpoint deleted.
+  /webhook-messages:
+    get:
+      operationId: listWebhookMessages
+      tags: [Webhooks]
+      summary: List delivered webhook messages
+      responses:
+        '200':
+          description: A list of webhook messages.
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: >-
+        Authenticate with your Hyperline API key passed as a bearer token in the
+        Authorization header - `Authorization: Bearer <API_KEY>`.
+  parameters:
+    IdParam:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  schemas:
+    Customer:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum: [company, individual]
+        currency:
+          type: string
+        billing_email:
+          type: string
+    Product:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        currency:
+          type: string
+    Subscription:
+      type: object
+      properties:
+        id:
+          type: string
+        customer_id:
+          type: string
+        status:
+          type: string
+        start_date:
+          type: string
+          format: date
+    BillableEvent:
+      type: object
+      properties:
+        event_name:
+          type: string
+        customer_id:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        properties:
+          type: object
+          additionalProperties: true
+    Invoice:
+      type: object
+      properties:
+        id:
+          type: string
+        customer_id:
+          type: string
+        status:
+          type: string
+        currency:
+          type: string
+        total:
+          type: integer
+    Payment:
+      type: object
+      properties:
+        id:
+          type: string
+        invoice_id:
+          type: string
+        amount:
+          type: integer
+        currency:
+          type: string
+    WebhookEndpoint:
+      type: object
+      properties:
+        id:
+          type: string
+        url:
+          type: string
+          format: uri
+        enabled_events:
+          type: array
+          items:
+            type: string

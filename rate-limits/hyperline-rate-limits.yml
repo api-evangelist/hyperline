@@ -1,0 +1,51 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Hyperline
+providerId: hyperline
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- Billing
+- Subscriptions
+- Usage-Based
+- Metering
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  Hyperline's REST API is authenticated per API key and follows REST
+  conventions over HTTPS. Hyperline does not publish specific numeric
+  request-per-minute or per-day rate limits in its public API reference;
+  callers should handle HTTP 429 responses with exponential backoff. High-volume
+  event ingestion is handled through the dedicated ingest endpoint and batch
+  operations (billable-events batch, customers batch, invoices batch). Specific
+  per-endpoint limit values are not reconciled in this artifact.
+notes: >-
+  No numeric rate limits are documented publicly as of the creation date.
+  Verify against Hyperline support or response headers during reconciliation.
+sources:
+- https://docs.hyperline.co/api-reference/docs/getting-started
+- https://docs.hyperline.co
+responseCodes:
+  throttled: 429
+limits:
+- name: API Requests
+  scope: api_key
+  metric: requests
+  limit: see provider documentation
+  notes: No published numeric limit; expect HTTP 429 under sustained load.
+- name: Event Ingestion
+  scope: api_key
+  metric: events
+  limit: see provider documentation
+  notes: High-volume events are ingested via the ingest endpoint and batch ingestion.
+policies:
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429 responses.
+- name: Batch Operations
+  description: Use batch endpoints (billable-events, customers, invoices) to reduce request volume for bulk workloads.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

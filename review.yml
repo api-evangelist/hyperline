@@ -1,0 +1,89 @@
+aid: hyperline
+name: Hyperline
+review:
+  question: Does Hyperline expose a documented public WebSocket or streaming (SSE) API?
+  answer: false
+  date: '2026-06-20'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    Per API Evangelist scope, HTTP Server-Sent Events (SSE) and WebSocket
+    surfaces are in scope for AsyncAPI modeling when documented. No AsyncAPI
+    document was created for Hyperline because no streaming, SSE, or WebSocket
+    transport is documented. Hyperline delivers asynchronous notifications via
+    HTTP webhooks (webhook-endpoints + webhook-messages), which are modeled as
+    REST resources, not as a streaming protocol.
+findings:
+  summary: |
+    Hyperline does not publish a documented public WebSocket or SSE API. The
+    Hyperline platform exposes a JSON REST API under
+    https://api.hyperline.co/v1 (with a sandbox at
+    https://sandbox.api.hyperline.co/v1) and a dedicated high-volume event
+    ingestion endpoint at https://ingest.hyperline.co. Authentication uses a
+    bearer token (HTTP bearer, JWT format) carried in the Authorization header.
+    Real-time, asynchronous delivery to consumers is provided through outbound
+    HTTP webhooks rather than a persistent socket. Hyperline also publishes its
+    own machine-readable OpenAPI document at https://api.hyperline.co/openapi.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.hyperline.co/v1
+      documented: true
+    - protocol: REST
+      scheme: https
+      baseURL: https://ingest.hyperline.co
+      note: Dedicated billable-event ingestion endpoint for high-volume usage metering.
+      documented: true
+    - protocol: Webhooks
+      scheme: https
+      note: Outbound HTTP webhook delivery configured via /webhook-endpoints; not a streaming socket.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in Hyperline's API reference or OpenAPI document as of the review date.
+    - protocol: SSE
+      scheme: https
+      documented: false
+      note: No Server-Sent Events streaming endpoint is documented.
+  endpointsConfirmedRest:
+    - GET  https://api.hyperline.co/v1/customers
+    - POST https://api.hyperline.co/v1/customers
+    - POST https://api.hyperline.co/v1/customers/{id}/credits
+    - GET  https://api.hyperline.co/v1/products
+    - GET  https://api.hyperline.co/v1/price-books
+    - GET  https://api.hyperline.co/v1/subscriptions
+    - POST https://api.hyperline.co/v1/subscriptions/{id}/activate
+    - POST https://api.hyperline.co/v1/subscriptions/refresh
+    - POST https://api.hyperline.co/v1/billable-events
+    - POST https://api.hyperline.co/v1/billable-events/simulate-prices
+    - GET  https://api.hyperline.co/v1/invoices
+    - POST https://api.hyperline.co/v1/invoices/{id}/charge
+    - POST https://api.hyperline.co/v1/invoices/{id}/credit-notes
+    - POST https://api.hyperline.co/v1/payments
+    - POST https://api.hyperline.co/v1/transactions/{id}/refund
+    - GET  https://api.hyperline.co/v1/webhook-endpoints
+    - GET  https://api.hyperline.co/v1/webhook-messages
+sources:
+  - url: https://docs.hyperline.co/api-reference/docs/getting-started
+    type: Documentation
+    note: States REST principles, JSON payloads, production and sandbox base URLs, and links the OpenAPI file.
+  - url: https://api.hyperline.co/openapi
+    type: OpenAPI
+    note: Hyperline-published OpenAPI 3.1.0 document; servers are https://api.hyperline.co and https://sandbox.api.hyperline.co; bearer (JWT) security scheme. No WebSocket/SSE.
+  - url: https://docs.hyperline.co/api-reference/endpoints/subscriptions/refresh-subscriptions
+    type: APIReference
+    note: Confirms paths carry a /v1 version segment (POST /v1/subscriptions/refresh).
+  - url: https://www.hyperline.co/pricing
+    type: Pricing
+    note: Public pricing - $199/mo + 0.6% and $299/mo + 0.7% tiers, custom High Volume tier.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket or SSE protocol surface exists in Hyperline's documentation or
+    published OpenAPI. Asynchronous delivery is handled via outbound HTTP
+    webhooks, modeled as REST resources. No AsyncAPI document was authored.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

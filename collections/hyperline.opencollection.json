@@ -1,0 +1,202 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hyperline API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": { "name": "Customers", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List customers", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hyperline.co/v1/customers"
+          },
+          "docs": "List customers."
+        },
+        {
+          "info": { "name": "Create a customer", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hyperline.co/v1/customers",
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Create a customer."
+        },
+        {
+          "info": { "name": "Get aggregated usage for a customer", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hyperline.co/v1/customers/{id}/usage/{aggregatorId}"
+          },
+          "docs": "Get aggregated usage for a customer."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Products", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List products", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hyperline.co/v1/products"
+          },
+          "docs": "List products."
+        },
+        {
+          "info": { "name": "Create a product", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hyperline.co/v1/products",
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Create a product."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Subscriptions", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List subscriptions", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hyperline.co/v1/subscriptions"
+          },
+          "docs": "List subscriptions."
+        },
+        {
+          "info": { "name": "Create a subscription", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hyperline.co/v1/subscriptions",
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Create a subscription."
+        },
+        {
+          "info": { "name": "Activate a subscription", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hyperline.co/v1/subscriptions/{id}/activate"
+          },
+          "docs": "Activate a subscription."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Billable Events", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Ingest billable events", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hyperline.co/v1/billable-events",
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Ingest one or more billable events."
+        },
+        {
+          "info": { "name": "Simulate prices for billable events", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hyperline.co/v1/billable-events/simulate-prices",
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Simulate prices for billable events."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Invoices", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List invoices", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hyperline.co/v1/invoices"
+          },
+          "docs": "List invoices."
+        },
+        {
+          "info": { "name": "Charge an invoice", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hyperline.co/v1/invoices/{id}/charge"
+          },
+          "docs": "Charge an invoice."
+        },
+        {
+          "info": { "name": "Issue a credit note against an invoice", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hyperline.co/v1/invoices/{id}/credit-notes",
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Issue a credit note against an invoice."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Payments", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Record a payment", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hyperline.co/v1/payments",
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Record a payment."
+        },
+        {
+          "info": { "name": "Refund a transaction", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hyperline.co/v1/transactions/{id}/refund"
+          },
+          "docs": "Refund a transaction."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Webhooks", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List webhook endpoints", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hyperline.co/v1/webhook-endpoints"
+          },
+          "docs": "List webhook endpoints."
+        },
+        {
+          "info": { "name": "Create a webhook endpoint", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hyperline.co/v1/webhook-endpoints",
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Create a webhook endpoint."
+        },
+        {
+          "info": { "name": "List webhook messages", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hyperline.co/v1/webhook-messages"
+          },
+          "docs": "List delivered webhook messages."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Hyperline
+providerId: hyperline
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: true
+tags:
+- Billing
+- Subscriptions
+- Usage-Based
+- Metering
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Hyperline platform spend. Hyperline charges a flat monthly
+  platform fee plus a percentage of revenue processed through the platform
+  (0.6% on Quote to Cash, 0.7% on Quote to Cash + Usage), with optional
+  per-integration add-ons and a custom High Volume tier. Beyond being a cost
+  itself, Hyperline is also a system of record for a customer's own usage-based
+  billing, exposing meters, invoices, payments, and credits that feed downstream
+  FinOps and revenue reporting.
+notes: >-
+  Percentage-of-revenue charges scale with processed billing volume; model the
+  platform fee plus the revenue percentage against expected throughput. Verify
+  current rates on the Hyperline pricing page during reconciliation.
+sources:
+- https://www.hyperline.co/pricing
+- https://docs.hyperline.co
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Hyperline
+serviceCategory: Billing and Revenue Management
+billingModel:
+  pricingCategory: Hybrid
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+  - Adjustment
+focusColumns:
+  ServiceName: Hyperline
+  ServiceCategory: Billing and Revenue Management
+  ProviderName: Hyperline
+  PublisherName: Hyperline
+  InvoiceIssuerName: Hyperline
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Hybrid
+meters:
+- name: platform_fee
+  description: Flat monthly subscription fee per Hyperline plan tier.
+  unit: months
+  aggregation: sum
+  dimensions:
+  - account
+  - plan
+- name: revenue_percentage
+  description: Percentage of revenue processed through the platform (0.6%-0.7% by tier).
+  unit: currency
+  aggregation: sum
+  dimensions:
+  - account
+  - plan
+- name: integration_addon
+  description: Per-integration monthly add-on for CRM and accounting connectors.
+  unit: integrations
+  aggregation: sum
+  dimensions:
+  - account
+  - integration
+- name: invoices
+  description: Invoices issued; tiers include a quota with overage on lower plans.
+  unit: invoices
+  aggregation: sum
+  dimensions:
+  - account
+principles:
+- name: Visibility
+  description: Track Hyperline platform fee plus the revenue-percentage charge against processed billing volume; export usage and invoice data via the API.
+- name: Allocation
+  description: Tag customers, products, and subscriptions to map Hyperline-billed revenue to internal cost centers and product lines.
+- name: Optimization
+  description: Right-size the plan tier to processed volume; consolidate integrations; use batch endpoints and the High Volume tier above $5M ARR to optimize per-invoice cost.
+- name: Accountability
+  description: Review the monthly platform fee plus revenue-percentage charge against forecasted billing throughput; assign owners per billing entity.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

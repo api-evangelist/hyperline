@@ -1,0 +1,139 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Hyperline
+providerId: hyperline
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: true
+tags:
+- Billing
+- Subscriptions
+- Usage-Based
+- Metering
+- Payments
+- Plans
+description: >-
+  Hyperline prices its platform as a hybrid of a flat monthly fee plus a
+  percentage of the revenue processed through the platform. Published tiers are
+  Quote to Cash ($199/month + 0.6% of revenue) and Quote to Cash + Usage
+  ($299/month + 0.7% of revenue), with a custom-priced High Volume tier for
+  companies above $5M ARR. CRM and accounting integrations are an add-on at
+  $50/integration/month. A free trial includes 10 invoices with no credit card
+  required. The platform API itself is included with a paid plan and is not
+  separately metered.
+notes: >-
+  Pricing as published on the public Hyperline pricing page; confirm current
+  rates and tier inclusions on the page during reconciliation.
+sources:
+- https://www.hyperline.co/pricing
+- https://docs.hyperline.co
+plans:
+- id: hyperline-quote-to-cash
+  name: Quote to Cash
+  type: subscription
+  description: >-
+    Flat monthly fee plus a percentage of revenue processed, for growing
+    businesses; includes subscriptions, CPQ, compliant invoicing, payment
+    collection, tax management, customer portal, and analytics. 10 free
+    invoices included.
+  entries:
+  - label: Platform Fee
+    name: platform_fee
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $199 per month
+    userMultiplied: false
+  - label: Revenue Percentage
+    name: revenue_percentage
+    type: usage
+    metric: revenue
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: 0.6% of revenue processed
+    userMultiplied: false
+  - label: CRM / Accounting Integration
+    name: integration_addon
+    type: flat
+    metric: integration
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $50 per integration per month
+    userMultiplied: false
+  elements:
+  - name: Subscriptions
+  - name: Modern CPQ
+  - name: Compliant Invoicing
+  - name: Payment Collection
+  - name: Tax Management
+  - name: Customer Portal
+  - name: Analytics
+- id: hyperline-quote-to-cash-usage
+  name: Quote to Cash + Usage
+  type: subscription
+  description: >-
+    Everything in Quote to Cash plus unlimited events, real-time consumption,
+    metered products, automated seat-based billing, prepaid credit management,
+    and direct database connection, for usage-based pricing models.
+  entries:
+  - label: Platform Fee
+    name: platform_fee
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $299 per month
+    userMultiplied: false
+  - label: Revenue Percentage
+    name: revenue_percentage
+    type: usage
+    metric: revenue
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: 0.7% of revenue processed
+    userMultiplied: false
+  elements:
+  - name: Unlimited Events
+  - name: Real-time Consumption
+  - name: Metered Products
+  - name: Automated Seat-Based Billing
+  - name: Prepaid Credit Management
+  - name: Direct Database Connection
+- id: hyperline-high-volume
+  name: Quote to Cash + High Volume
+  type: enterprise
+  description: >-
+    Custom-priced tier for companies with more than $5M ARR; includes
+    unlimited invoices, premium support, migration and onboarding, and
+    historical data import. Contact sales.
+  entries:
+  - label: Custom Agreement
+    name: high_volume
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Unlimited Invoices
+  - name: Premium Support
+  - name: Migration and Onboarding
+  - name: Historical Data Import
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

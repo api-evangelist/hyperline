@@ -1,0 +1,407 @@
+{
+  "item": [
+    {
+      "name": "Customers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "name": "List customers",
+          "request": {
+            "name": "List customers",
+            "url": {
+              "path": ["v1", "customers"],
+              "host": ["{{baseUrl}}"],
+              "query": [
+                { "key": "limit", "value": "10" },
+                { "key": "starting_after", "value": "" }
+              ],
+              "variable": []
+            },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "name": "Create a customer",
+          "request": {
+            "name": "Create a customer",
+            "url": {
+              "path": ["v1", "customers"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": []
+            },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"company\",\n  \"currency\": \"USD\",\n  \"billing_email\": \"<string>\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get aggregated usage for a customer",
+          "request": {
+            "name": "Get aggregated usage for a customer",
+            "url": {
+              "path": ["v1", "customers", ":id", "usage", ":aggregatorId"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [
+                { "key": "id", "value": "<string>" },
+                { "key": "aggregatorId", "value": "<string>" }
+              ]
+            },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Products",
+      "description": { "content": "", "type": "text/plain" },
+      "item": [
+        {
+          "name": "List products",
+          "request": {
+            "name": "List products",
+            "url": {
+              "path": ["v1", "products"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": []
+            },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "name": "Create a product",
+          "request": {
+            "name": "Create a product",
+            "url": {
+              "path": ["v1", "products"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": []
+            },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"currency\": \"USD\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Subscriptions",
+      "description": { "content": "", "type": "text/plain" },
+      "item": [
+        {
+          "name": "List subscriptions",
+          "request": {
+            "name": "List subscriptions",
+            "url": {
+              "path": ["v1", "subscriptions"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": []
+            },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "name": "Create a subscription",
+          "request": {
+            "name": "Create a subscription",
+            "url": {
+              "path": ["v1", "subscriptions"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": []
+            },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customer_id\": \"<string>\",\n  \"start_date\": \"2026-06-20\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Activate a subscription",
+          "request": {
+            "name": "Activate a subscription",
+            "url": {
+              "path": ["v1", "subscriptions", ":id", "activate"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [{ "key": "id", "value": "<string>" }]
+            },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "method": "POST",
+            "auth": null
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Billable Events",
+      "description": { "content": "", "type": "text/plain" },
+      "item": [
+        {
+          "name": "Ingest billable events",
+          "request": {
+            "name": "Ingest billable events",
+            "url": {
+              "path": ["v1", "billable-events"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": []
+            },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"event_name\": \"<string>\",\n  \"customer_id\": \"<string>\",\n  \"timestamp\": \"2026-06-20T00:00:00Z\",\n  \"properties\": {}\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Simulate prices for billable events",
+          "request": {
+            "name": "Simulate prices for billable events",
+            "url": {
+              "path": ["v1", "billable-events", "simulate-prices"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": []
+            },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Invoices",
+      "description": { "content": "", "type": "text/plain" },
+      "item": [
+        {
+          "name": "List invoices",
+          "request": {
+            "name": "List invoices",
+            "url": {
+              "path": ["v1", "invoices"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": []
+            },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "name": "Charge an invoice",
+          "request": {
+            "name": "Charge an invoice",
+            "url": {
+              "path": ["v1", "invoices", ":id", "charge"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [{ "key": "id", "value": "<string>" }]
+            },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "method": "POST",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "name": "Issue a credit note against an invoice",
+          "request": {
+            "name": "Issue a credit note against an invoice",
+            "url": {
+              "path": ["v1", "invoices", ":id", "credit-notes"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [{ "key": "id", "value": "<string>" }]
+            },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Payments",
+      "description": { "content": "", "type": "text/plain" },
+      "item": [
+        {
+          "name": "Record a payment",
+          "request": {
+            "name": "Record a payment",
+            "url": {
+              "path": ["v1", "payments"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": []
+            },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoice_id\": \"<string>\",\n  \"amount\": 0,\n  \"currency\": \"USD\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Refund a transaction",
+          "request": {
+            "name": "Refund a transaction",
+            "url": {
+              "path": ["v1", "transactions", ":id", "refund"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [{ "key": "id", "value": "<string>" }]
+            },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "method": "POST",
+            "auth": null
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Webhooks",
+      "description": { "content": "", "type": "text/plain" },
+      "item": [
+        {
+          "name": "List webhook endpoints",
+          "request": {
+            "name": "List webhook endpoints",
+            "url": {
+              "path": ["v1", "webhook-endpoints"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": []
+            },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "name": "Create a webhook endpoint",
+          "request": {
+            "name": "Create a webhook endpoint",
+            "url": {
+              "path": ["v1", "webhook-endpoints"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": []
+            },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"https://example.com/webhooks\",\n  \"enabled_events\": []\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List webhook messages",
+          "request": {
+            "name": "List webhook messages",
+            "url": {
+              "path": ["v1", "webhook-messages"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": []
+            },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.hyperline.co",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "name": "Hyperline API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Usage-based billing and subscription API for Hyperline - customers, products and plans, subscriptions, billable events, invoices, payments, credit notes, and webhooks.\n\nContact Support:\n Name: Hyperline Support\n URL: https://docs.hyperline.co",
+      "type": "text/plain"
+    }
+  }
+}
