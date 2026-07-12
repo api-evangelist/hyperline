@@ -169,6 +169,12 @@ apis:
   description: Register and manage webhook endpoints and inspect delivered webhook
     messages to receive real-time notifications of billing lifecycle events.
 common:
+- type: TrustCenter
+  url: security/hyperline-trust-center.yml
+- type: DomainSecurity
+  url: security/hyperline-domain-security.yml
+- type: Authentication
+  url: authentication/hyperline-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/hyperline
 - type: Website
@@ -181,6 +187,8 @@ common:
   url: rate-limits/hyperline-rate-limits.yml
 - type: FinOps
   url: finops/hyperline-finops.yml
+- url: https://hyperline.co/resources/blog
+  type: Blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
