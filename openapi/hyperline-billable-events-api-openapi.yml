@@ -1,0 +1,80 @@
+openapi: 3.0.1
+info:
+  title: Hyperline Billable Events API
+  description: The Hyperline API follows REST principles and uses JSON-encoded request and response payloads. It powers usage-based billing and subscription management for B2B SaaS - covering customers, products and plans, subscriptions, billable event ingestion, invoices, payments, credit notes, and webhooks. The full machine-readable specification is published by Hyperline at https://api.hyperline.co/openapi.
+  termsOfService: https://www.hyperline.co/legal/terms
+  contact:
+    name: Hyperline Support
+    url: https://docs.hyperline.co
+  version: '1.0'
+servers:
+- url: https://api.hyperline.co/v1
+  description: Production
+- url: https://sandbox.api.hyperline.co/v1
+  description: Sandbox
+security:
+- bearerAuth: []
+tags:
+- name: Billable Events
+paths:
+  /billable-events:
+    get:
+      operationId: listBillableEvents
+      tags:
+      - Billable Events
+      summary: Retrieve billable events
+      responses:
+        '200':
+          description: A list of billable events.
+    post:
+      operationId: ingestBillableEvents
+      tags:
+      - Billable Events
+      summary: Ingest one or more billable events
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BillableEvent'
+      responses:
+        '201':
+          description: Events ingested.
+    delete:
+      operationId: deleteBillableEvents
+      tags:
+      - Billable Events
+      summary: Delete billable events
+      responses:
+        '204':
+          description: Events deleted.
+  /billable-events/simulate-prices:
+    post:
+      operationId: simulateBillableEventPrices
+      tags:
+      - Billable Events
+      summary: Simulate prices for billable events
+      responses:
+        '200':
+          description: Simulated pricing result.
+components:
+  schemas:
+    BillableEvent:
+      type: object
+      properties:
+        event_name:
+          type: string
+        customer_id:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        properties:
+          type: object
+          additionalProperties: true
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'Authenticate with your Hyperline API key passed as a bearer token in the Authorization header - `Authorization: Bearer <API_KEY>`.'

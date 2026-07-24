@@ -1,0 +1,167 @@
+openapi: 3.0.1
+info:
+  title: Hyperline Billable Events Customers API
+  description: The Hyperline API follows REST principles and uses JSON-encoded request and response payloads. It powers usage-based billing and subscription management for B2B SaaS - covering customers, products and plans, subscriptions, billable event ingestion, invoices, payments, credit notes, and webhooks. The full machine-readable specification is published by Hyperline at https://api.hyperline.co/openapi.
+  termsOfService: https://www.hyperline.co/legal/terms
+  contact:
+    name: Hyperline Support
+    url: https://docs.hyperline.co
+  version: '1.0'
+servers:
+- url: https://api.hyperline.co/v1
+  description: Production
+- url: https://sandbox.api.hyperline.co/v1
+  description: Sandbox
+security:
+- bearerAuth: []
+tags:
+- name: Customers
+paths:
+  /customers:
+    get:
+      operationId: listCustomers
+      tags:
+      - Customers
+      summary: List customers
+      parameters:
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      - name: starting_after
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A paginated list of customers.
+    post:
+      operationId: createCustomer
+      tags:
+      - Customers
+      summary: Create a customer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+      responses:
+        '201':
+          description: The created customer.
+  /customers/{id}:
+    get:
+      operationId: getCustomer
+      tags:
+      - Customers
+      summary: Retrieve a customer
+      parameters:
+      - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: The requested customer.
+    patch:
+      operationId: updateCustomer
+      tags:
+      - Customers
+      summary: Update a customer
+      parameters:
+      - $ref: '#/components/parameters/IdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+      responses:
+        '200':
+          description: The updated customer.
+    delete:
+      operationId: deleteCustomer
+      tags:
+      - Customers
+      summary: Delete a customer (must be archived first)
+      parameters:
+      - $ref: '#/components/parameters/IdParam'
+      responses:
+        '204':
+          description: Customer deleted.
+  /customers/{id}/archive:
+    post:
+      operationId: archiveCustomer
+      tags:
+      - Customers
+      summary: Archive a customer
+      parameters:
+      - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: The archived customer.
+  /customers/{id}/credits:
+    get:
+      operationId: listCustomerCredits
+      tags:
+      - Customers
+      summary: List a customer's credits
+      parameters:
+      - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: A list of customer credits.
+    post:
+      operationId: createCustomerCredit
+      tags:
+      - Customers
+      summary: Grant a credit to a customer
+      parameters:
+      - $ref: '#/components/parameters/IdParam'
+      responses:
+        '201':
+          description: The created credit.
+  /customers/{id}/usage/{aggregatorId}:
+    get:
+      operationId: getCustomerUsage
+      tags:
+      - Customers
+      summary: Get aggregated usage for a customer
+      parameters:
+      - $ref: '#/components/parameters/IdParam'
+      - name: aggregatorId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Aggregated usage for the customer.
+components:
+  parameters:
+    IdParam:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  schemas:
+    Customer:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - company
+          - individual
+        currency:
+          type: string
+        billing_email:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'Authenticate with your Hyperline API key passed as a bearer token in the Authorization header - `Authorization: Bearer <API_KEY>`.'

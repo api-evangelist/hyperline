@@ -1,0 +1,99 @@
+openapi: 3.0.1
+info:
+  title: Hyperline Billable Events Webhooks API
+  description: The Hyperline API follows REST principles and uses JSON-encoded request and response payloads. It powers usage-based billing and subscription management for B2B SaaS - covering customers, products and plans, subscriptions, billable event ingestion, invoices, payments, credit notes, and webhooks. The full machine-readable specification is published by Hyperline at https://api.hyperline.co/openapi.
+  termsOfService: https://www.hyperline.co/legal/terms
+  contact:
+    name: Hyperline Support
+    url: https://docs.hyperline.co
+  version: '1.0'
+servers:
+- url: https://api.hyperline.co/v1
+  description: Production
+- url: https://sandbox.api.hyperline.co/v1
+  description: Sandbox
+security:
+- bearerAuth: []
+tags:
+- name: Webhooks
+paths:
+  /webhook-endpoints:
+    get:
+      operationId: listWebhookEndpoints
+      tags:
+      - Webhooks
+      summary: List webhook endpoints
+      responses:
+        '200':
+          description: A list of webhook endpoints.
+    post:
+      operationId: createWebhookEndpoint
+      tags:
+      - Webhooks
+      summary: Create a webhook endpoint
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookEndpoint'
+      responses:
+        '201':
+          description: The created webhook endpoint.
+  /webhook-endpoints/{id}:
+    patch:
+      operationId: updateWebhookEndpoint
+      tags:
+      - Webhooks
+      summary: Update a webhook endpoint
+      parameters:
+      - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: The updated webhook endpoint.
+    delete:
+      operationId: deleteWebhookEndpoint
+      tags:
+      - Webhooks
+      summary: Delete a webhook endpoint
+      parameters:
+      - $ref: '#/components/parameters/IdParam'
+      responses:
+        '204':
+          description: Webhook endpoint deleted.
+  /webhook-messages:
+    get:
+      operationId: listWebhookMessages
+      tags:
+      - Webhooks
+      summary: List delivered webhook messages
+      responses:
+        '200':
+          description: A list of webhook messages.
+components:
+  parameters:
+    IdParam:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  schemas:
+    WebhookEndpoint:
+      type: object
+      properties:
+        id:
+          type: string
+        url:
+          type: string
+          format: uri
+        enabled_events:
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'Authenticate with your Hyperline API key passed as a bearer token in the Authorization header - `Authorization: Bearer <API_KEY>`.'

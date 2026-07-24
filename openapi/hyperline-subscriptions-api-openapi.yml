@@ -1,0 +1,132 @@
+openapi: 3.0.1
+info:
+  title: Hyperline Billable Events Subscriptions API
+  description: The Hyperline API follows REST principles and uses JSON-encoded request and response payloads. It powers usage-based billing and subscription management for B2B SaaS - covering customers, products and plans, subscriptions, billable event ingestion, invoices, payments, credit notes, and webhooks. The full machine-readable specification is published by Hyperline at https://api.hyperline.co/openapi.
+  termsOfService: https://www.hyperline.co/legal/terms
+  contact:
+    name: Hyperline Support
+    url: https://docs.hyperline.co
+  version: '1.0'
+servers:
+- url: https://api.hyperline.co/v1
+  description: Production
+- url: https://sandbox.api.hyperline.co/v1
+  description: Sandbox
+security:
+- bearerAuth: []
+tags:
+- name: Subscriptions
+paths:
+  /subscriptions:
+    get:
+      operationId: listSubscriptions
+      tags:
+      - Subscriptions
+      summary: List subscriptions
+      responses:
+        '200':
+          description: A list of subscriptions.
+    post:
+      operationId: createSubscription
+      tags:
+      - Subscriptions
+      summary: Create a subscription
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Subscription'
+      responses:
+        '201':
+          description: The created subscription.
+  /subscriptions/{id}:
+    get:
+      operationId: getSubscription
+      tags:
+      - Subscriptions
+      summary: Retrieve a subscription
+      parameters:
+      - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: The requested subscription.
+    patch:
+      operationId: updateSubscription
+      tags:
+      - Subscriptions
+      summary: Update a subscription
+      parameters:
+      - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: The updated subscription.
+  /subscriptions/{id}/activate:
+    post:
+      operationId: activateSubscription
+      tags:
+      - Subscriptions
+      summary: Activate a subscription
+      parameters:
+      - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: The activated subscription.
+  /subscriptions/{id}/cancel:
+    post:
+      operationId: cancelSubscription
+      tags:
+      - Subscriptions
+      summary: Cancel a subscription
+      parameters:
+      - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: The cancelled subscription.
+  /subscriptions/{id}/pause:
+    post:
+      operationId: pauseSubscription
+      tags:
+      - Subscriptions
+      summary: Pause a subscription
+      parameters:
+      - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: The paused subscription.
+  /subscriptions/refresh:
+    post:
+      operationId: refreshSubscriptions
+      tags:
+      - Subscriptions
+      summary: Refresh subscriptions usage data and related open invoices
+      responses:
+        '202':
+          description: Refresh accepted.
+components:
+  parameters:
+    IdParam:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  schemas:
+    Subscription:
+      type: object
+      properties:
+        id:
+          type: string
+        customer_id:
+          type: string
+        status:
+          type: string
+        start_date:
+          type: string
+          format: date
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'Authenticate with your Hyperline API key passed as a bearer token in the Authorization header - `Authorization: Bearer <API_KEY>`.'
