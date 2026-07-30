@@ -7,7 +7,20 @@ description: Hyperline is a usage-based billing and subscription platform that h
   customers, a product and plan catalog, subscriptions, real-time usage and event
   ingestion, invoicing, payments, credit notes, and webhooks for hybrid pricing models
   combining subscription and metered charges.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: open
+  trial: true
+  try_now: true
+  public: true
+  label: Paid (free trial) · Open access
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/hyperline.png
 tags:
 - Billing
 - Subscriptions
@@ -20,154 +33,286 @@ created: '2026-06-20'
 modified: '2026-06-20'
 specificationVersion: '0.19'
 apis:
-- aid: hyperline:hyperline-customers-api
-  name: Hyperline Customers API
-  tags:
-  - Customers
-  - Accounts
-  - Credits
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+- aid: hyperline:hyperline-billable-events-api
+  name: Hyperline Billable Events API
+  description: The Billable Events API from Hyperline — 2 operation(s) for billable events.
   humanURL: https://docs.hyperline.co/api-reference/endpoints/customers
   baseURL: https://api.hyperline.co/v1
-  properties:
-  - url: https://docs.hyperline.co/api-reference/docs/getting-started
-    type: Documentation
-  - url: https://docs.hyperline.co/api-reference/endpoints/customers
-    type: APIReference
-  - url: openapi/hyperline-openapi.yml
-    type: OpenAPI
-  - url: collections/hyperline.postman_collection.json
-    type: PostmanCollection
-  description: Create, list, update, archive, and manage customers along with their
-    payment methods, credits, features, segments, tax rates, valuation, and the
-    self-serve customer portal.
-- aid: hyperline:hyperline-products-plans-api
-  name: Hyperline Products & Plans API
   tags:
-  - Products
-  - Plans
-  - Catalog
-  - Pricing
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.hyperline.co/api-reference/endpoints/products
-  baseURL: https://api.hyperline.co/v1
+  - Billable Events
   properties:
-  - url: https://docs.hyperline.co/api-reference/endpoints/products
-    type: Documentation
-  - url: https://docs.hyperline.co/api-reference/endpoints/products
-    type: APIReference
-  - url: openapi/hyperline-openapi.yml
-    type: OpenAPI
-  - url: collections/hyperline.postman_collection.json
-    type: PostmanCollection
-  description: Manage the product and pricing catalog - products, price books, price
-    configurations, features, coupons, and promotion codes - including draft and
-    versioned catalog publishing.
-- aid: hyperline:hyperline-subscriptions-api
-  name: Hyperline Subscriptions API
+  - type: OpenAPI
+    url: openapi/hyperline-billable-events-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/docs/getting-started
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/customers
+  - type: PostmanCollection
+    url: collections/hyperline.postman_collection.json
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/products
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/products
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/subscriptions
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/subscriptions
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/billable-events
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/billable-events
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/invoices
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/invoices
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/payments
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/payments
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/webhooks
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/webhooks
+- aid: hyperline:hyperline-customers-api
+  name: Hyperline Customers API
+  description: The Customers API from Hyperline — 5 operation(s) for customers.
+  humanURL: https://docs.hyperline.co/api-reference/endpoints/customers
+  baseURL: https://api.hyperline.co/v1
   tags:
-  - Subscriptions
-  - Lifecycle
-  - Quotes
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.hyperline.co/api-reference/endpoints/subscriptions
-  baseURL: https://api.hyperline.co/v1
+  - Customers
   properties:
-  - url: https://docs.hyperline.co/api-reference/endpoints/subscriptions
-    type: Documentation
-  - url: https://docs.hyperline.co/api-reference/endpoints/subscriptions
-    type: APIReference
-  - url: openapi/hyperline-openapi.yml
-    type: OpenAPI
-  - url: collections/hyperline.postman_collection.json
-    type: PostmanCollection
-  description: Create and manage subscriptions across their full lifecycle - activate,
-    pause, cancel, renew, reinstate, schedule updates and phase transitions - plus
-    subscription templates, transitions, and quotes (CPQ).
-- aid: hyperline:hyperline-usage-events-api
-  name: Hyperline Usage & Events API
-  tags:
-  - Usage
-  - Events
-  - Metering
-  - Ingestion
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.hyperline.co/api-reference/endpoints/billable-events
-  baseURL: https://api.hyperline.co/v1
-  properties:
-  - url: https://docs.hyperline.co/api-reference/endpoints/billable-events
-    type: Documentation
-  - url: https://docs.hyperline.co/api-reference/endpoints/billable-events
-    type: APIReference
-  - url: openapi/hyperline-openapi.yml
-    type: OpenAPI
-  - url: collections/hyperline.postman_collection.json
-    type: PostmanCollection
-  description: Ingest billable events (single or batch), retrieve and delete events,
-    simulate prices, and read aggregated customer usage via aggregators with
-    grouped, timeseries, and per-event breakdowns.
+  - type: OpenAPI
+    url: openapi/hyperline-customers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/docs/getting-started
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/customers
+  - type: PostmanCollection
+    url: collections/hyperline.postman_collection.json
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/products
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/products
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/subscriptions
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/subscriptions
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/billable-events
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/billable-events
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/invoices
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/invoices
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/payments
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/payments
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/webhooks
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/webhooks
 - aid: hyperline:hyperline-invoices-api
   name: Hyperline Invoices API
+  description: The Invoices API from Hyperline — 6 operation(s) for invoices.
+  humanURL: https://docs.hyperline.co/api-reference/endpoints/customers
+  baseURL: https://api.hyperline.co/v1
   tags:
   - Invoices
-  - Credit Notes
-  - Billing
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.hyperline.co/api-reference/endpoints/invoices
-  baseURL: https://api.hyperline.co/v1
   properties:
-  - url: https://docs.hyperline.co/api-reference/endpoints/invoices
-    type: Documentation
-  - url: https://docs.hyperline.co/api-reference/endpoints/invoices
-    type: APIReference
-  - url: openapi/hyperline-openapi.yml
-    type: OpenAPI
-  - url: collections/hyperline.postman_collection.json
-    type: PostmanCollection
-  description: Create, list, update, charge, void, and download invoices; manage
-    invoice transactions, mark uncollectible, validate, and issue credit notes
-    against invoices.
+  - type: OpenAPI
+    url: openapi/hyperline-invoices-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/docs/getting-started
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/customers
+  - type: PostmanCollection
+    url: collections/hyperline.postman_collection.json
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/products
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/products
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/subscriptions
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/subscriptions
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/billable-events
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/billable-events
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/invoices
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/invoices
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/payments
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/payments
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/webhooks
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/webhooks
 - aid: hyperline:hyperline-payments-api
   name: Hyperline Payments API
+  description: The Payments API from Hyperline — 2 operation(s) for payments.
+  humanURL: https://docs.hyperline.co/api-reference/endpoints/customers
+  baseURL: https://api.hyperline.co/v1
   tags:
   - Payments
-  - Transactions
-  - Refunds
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.hyperline.co/api-reference/endpoints/payments
-  baseURL: https://api.hyperline.co/v1
   properties:
-  - url: https://docs.hyperline.co/api-reference/endpoints/payments
-    type: Documentation
-  - url: https://docs.hyperline.co/api-reference/endpoints/payments
-    type: APIReference
-  - url: openapi/hyperline-openapi.yml
-    type: OpenAPI
-  - url: collections/hyperline.postman_collection.json
-    type: PostmanCollection
-  description: Record payments and refund transactions across native payment
-    provider integrations (Stripe, GoCardless, Mollie, Airwallex), plus bank
-    accounts and customer wallets.
+  - type: OpenAPI
+    url: openapi/hyperline-payments-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/docs/getting-started
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/customers
+  - type: PostmanCollection
+    url: collections/hyperline.postman_collection.json
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/products
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/products
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/subscriptions
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/subscriptions
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/billable-events
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/billable-events
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/invoices
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/invoices
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/payments
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/payments
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/webhooks
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/webhooks
+- aid: hyperline:hyperline-products-api
+  name: Hyperline Products API
+  description: The Products API from Hyperline — 3 operation(s) for products.
+  humanURL: https://docs.hyperline.co/api-reference/endpoints/customers
+  baseURL: https://api.hyperline.co/v1
+  tags:
+  - Products
+  properties:
+  - type: OpenAPI
+    url: openapi/hyperline-products-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/docs/getting-started
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/customers
+  - type: PostmanCollection
+    url: collections/hyperline.postman_collection.json
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/products
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/products
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/subscriptions
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/subscriptions
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/billable-events
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/billable-events
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/invoices
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/invoices
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/payments
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/payments
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/webhooks
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/webhooks
+- aid: hyperline:hyperline-subscriptions-api
+  name: Hyperline Subscriptions API
+  description: The Subscriptions API from Hyperline — 6 operation(s) for subscriptions.
+  humanURL: https://docs.hyperline.co/api-reference/endpoints/customers
+  baseURL: https://api.hyperline.co/v1
+  tags:
+  - Subscriptions
+  properties:
+  - type: OpenAPI
+    url: openapi/hyperline-subscriptions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/docs/getting-started
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/customers
+  - type: PostmanCollection
+    url: collections/hyperline.postman_collection.json
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/products
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/products
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/subscriptions
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/subscriptions
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/billable-events
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/billable-events
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/invoices
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/invoices
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/payments
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/payments
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/webhooks
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/webhooks
 - aid: hyperline:hyperline-webhooks-api
   name: Hyperline Webhooks API
+  description: The Webhooks API from Hyperline — 3 operation(s) for webhooks.
+  humanURL: https://docs.hyperline.co/api-reference/endpoints/customers
+  baseURL: https://api.hyperline.co/v1
   tags:
   - Webhooks
-  - Events
-  - Notifications
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.hyperline.co/api-reference/endpoints/webhooks
-  baseURL: https://api.hyperline.co/v1
   properties:
-  - url: https://docs.hyperline.co/api-reference/endpoints/webhooks
-    type: Documentation
-  - url: https://docs.hyperline.co/api-reference/endpoints/webhooks
-    type: APIReference
-  - url: openapi/hyperline-openapi.yml
-    type: OpenAPI
-  - url: collections/hyperline.postman_collection.json
-    type: PostmanCollection
-  description: Register and manage webhook endpoints and inspect delivered webhook
-    messages to receive real-time notifications of billing lifecycle events.
+  - type: OpenAPI
+    url: openapi/hyperline-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/docs/getting-started
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/customers
+  - type: PostmanCollection
+    url: collections/hyperline.postman_collection.json
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/products
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/products
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/subscriptions
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/subscriptions
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/billable-events
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/billable-events
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/invoices
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/invoices
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/payments
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/payments
+  - type: Documentation
+    url: https://docs.hyperline.co/api-reference/endpoints/webhooks
+  - type: APIReference
+    url: https://docs.hyperline.co/api-reference/endpoints/webhooks
 common:
 - type: AgenticAccess
   url: agentic-access/hyperline-agentic-access.yml
