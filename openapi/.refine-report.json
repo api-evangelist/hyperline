@@ -1,0 +1,26 @@
+{
+  "provider": "hyperline",
+  "sources": [
+    "hyperline-billable-events-api-openapi.yml",
+    "hyperline-customers-api-openapi.yml",
+    "hyperline-invoices-api-openapi.yml",
+    "hyperline-payments-api-openapi.yml",
+    "hyperline-products-api-openapi.yml",
+    "hyperline-subscriptions-api-openapi.yml",
+    "hyperline-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "hyperline-billable-events-api-openapi.yml",
+    "hyperline-customers-api-openapi.yml",
+    "hyperline-invoices-api-openapi.yml",
+    "hyperline-payments-api-openapi.yml",
+    "hyperline-products-api-openapi.yml",
+    "hyperline-subscriptions-api-openapi.yml",
+    "hyperline-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
