@@ -1,0 +1,72 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hyperline Billable Events API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Billable Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve billable events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hyperline.co/v1/billable-events"
+          },
+          "docs": "Retrieve billable events"
+        },
+        {
+          "info": {
+            "name": "Ingest one or more billable events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hyperline.co/v1/billable-events",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Ingest one or more billable events"
+        },
+        {
+          "info": {
+            "name": "Delete billable events",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.hyperline.co/v1/billable-events"
+          },
+          "docs": "Delete billable events"
+        },
+        {
+          "info": {
+            "name": "Simulate prices for billable events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hyperline.co/v1/billable-events/simulate-prices"
+          },
+          "docs": "Simulate prices for billable events"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
