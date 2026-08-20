@@ -23,6 +23,14 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/hyperline.png
 tags:
 - Billing
+- Subscription
+- Usage-Based
+- Metering
+- Payments
+- Invoicing
+- FinOps
+tags_raw:
+- Billing
 - Subscriptions
 - Usage-Based
 - Metering
@@ -199,6 +207,8 @@ apis:
   humanURL: https://docs.hyperline.co/api-reference/endpoints/customers
   baseURL: https://api.hyperline.co/v1
   tags:
+  - Product
+  tags_raw:
   - Products
   properties:
   - type: OpenAPI
@@ -239,6 +249,8 @@ apis:
   humanURL: https://docs.hyperline.co/api-reference/endpoints/customers
   baseURL: https://api.hyperline.co/v1
   tags:
+  - Subscription
+  tags_raw:
   - Subscriptions
   properties:
   - type: OpenAPI
@@ -279,6 +291,8 @@ apis:
   humanURL: https://docs.hyperline.co/api-reference/endpoints/customers
   baseURL: https://api.hyperline.co/v1
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
