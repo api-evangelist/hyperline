@@ -7,6 +7,18 @@ description: Hyperline is a usage-based billing and subscription platform that h
   customers, a product and plan catalog, subscriptions, real-time usage and event
   ingestion, invoicing, payments, credit notes, and webhooks for hybrid pricing models
   combining subscription and metered charges.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: open
