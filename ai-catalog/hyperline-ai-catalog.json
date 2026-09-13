@@ -1,0 +1,128 @@
+{
+  "specVersion": "1.0",
+  "host": {
+    "displayName": "Hyperline",
+    "identifier": "https://www.hyperline.co",
+    "documentationUrl": "https://docs.hyperline.co",
+    "logoUrl": "https://www.hyperline.co/brand/logo-square.png"
+  },
+  "entries": [
+    {
+      "identifier": "urn:air:hyperline.co:server:documentation",
+      "displayName": "Hyperline Docs MCP",
+      "type": "application/mcp-server-card+json",
+      "url": "https://docs.hyperline.co/.well-known/mcp/server-card.json",
+      "description": "Search and read the complete public Hyperline documentation and API reference through a read-only MCP server.",
+      "tags": [
+        "billing",
+        "documentation",
+        "api",
+        "mcp"
+      ],
+      "capabilities": [
+        "SearchHyperlineDocs",
+        "ReadHyperlineDocs"
+      ],
+      "representativeQueries": [
+        "how do I send usage events to Hyperline",
+        "how does Hyperline authenticate API requests",
+        "how do I create a subscription with a prepaid credit wallet in Hyperline"
+      ],
+      "version": "1.0.0",
+      "updatedAt": "2026-09-11T00:00:00Z",
+      "trustManifest": {
+        "identity": "https://www.hyperline.co",
+        "identityType": "https",
+        "attestations": [
+          {
+            "type": "SOC2-Type2",
+            "uri": "https://www.hyperline.co/legal-information"
+          },
+          {
+            "type": "ISO27001",
+            "uri": "https://www.hyperline.co/legal-information"
+          }
+        ],
+        "provenance": [
+          {
+            "relation": "publishedFrom",
+            "sourceId": "https://docs.hyperline.co"
+          }
+        ]
+      }
+    },
+    {
+      "identifier": "urn:air:hyperline.co:api:billing",
+      "displayName": "Hyperline API",
+      "type": "application/vnd.oai.openapi+json",
+      "url": "https://api.hyperline.co/openapi",
+      "description": "Create customers, quotes, subscriptions, wallets and invoices, collect payments and read revenue data through Hyperline's REST API.",
+      "tags": [
+        "billing",
+        "cpq",
+        "subscriptions",
+        "invoices",
+        "payments",
+        "openapi"
+      ],
+      "capabilities": [
+        "CustomerBilling",
+        "SubscriptionManagement",
+        "QuoteToCash",
+        "InvoiceManagement",
+        "PaymentCollection",
+        "RevenueRecognition"
+      ],
+      "representativeQueries": [
+        "create a customer and a subscription in Hyperline",
+        "send a quote for signature with Hyperline",
+        "retrieve a customer's invoices from Hyperline"
+      ],
+      "updatedAt": "2026-09-11T00:00:00Z"
+    },
+    {
+      "identifier": "urn:air:hyperline.co:api:ingest",
+      "displayName": "Hyperline events ingestion API",
+      "type": "application/vnd.oai.openapi+json",
+      "url": "https://ingest.hyperline.co/openapi",
+      "description": "Stream usage events into Hyperline for real-time metering and usage-based billing.",
+      "tags": [
+        "metering",
+        "usage-based",
+        "events",
+        "openapi"
+      ],
+      "capabilities": [
+        "UsageMetering",
+        "EventIngestion"
+      ],
+      "representativeQueries": [
+        "send a usage event to Hyperline",
+        "meter API calls per customer for usage-based billing"
+      ],
+      "updatedAt": "2026-09-11T00:00:00Z"
+    },
+    {
+      "identifier": "urn:air:hyperline.co:skill:billing-integration",
+      "displayName": "Build on Hyperline",
+      "type": "application/ai-skill+md",
+      "url": "https://docs.hyperline.co/.well-known/agent-skills/hyperline/skill.md",
+      "description": "Guidance for agents building billing systems, subscriptions, quotes, usage tracking and revenue workflows on Hyperline.",
+      "tags": [
+        "billing",
+        "integration",
+        "skill"
+      ],
+      "capabilities": [
+        "HyperlineIntegrationPlanning",
+        "HyperlineApiImplementation"
+      ],
+      "representativeQueries": [
+        "help me integrate Hyperline billing into my application",
+        "design usage-based pricing with prepaid credits on Hyperline"
+      ],
+      "updatedAt": "2026-09-11T00:00:00Z"
+    }
+  ],
+  "collections": []
+}
