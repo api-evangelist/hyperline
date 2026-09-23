@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: Hyperline Billable Events API
   description: The Hyperline API follows REST principles and uses JSON-encoded request and response payloads. It powers usage-based billing and subscription management for B2B SaaS - covering customers, products and plans, subscriptions, billable event ingestion, invoices, payments, credit notes, and webhooks. The full machine-readable specification is published by Hyperline at https://api.hyperline.co/openapi.

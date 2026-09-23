@@ -1,13 +1,7 @@
 {
   "provider": "hyperline",
   "sources": [
-    "hyperline-billable-events-api-openapi.yml",
-    "hyperline-customers-api-openapi.yml",
-    "hyperline-invoices-api-openapi.yml",
-    "hyperline-payments-api-openapi.yml",
-    "hyperline-products-api-openapi.yml",
-    "hyperline-subscriptions-api-openapi.yml",
-    "hyperline-webhooks-api-openapi.yml"
+    "_original/hyperline-openapi.yml"
   ],
   "outputs": [
     "hyperline-billable-events-api-openapi.yml",
@@ -21,6 +15,18 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "hyperline-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "hyperline-billable-events-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hyperline-customers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hyperline-invoices-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hyperline-payments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hyperline-products-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hyperline-subscriptions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hyperline-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

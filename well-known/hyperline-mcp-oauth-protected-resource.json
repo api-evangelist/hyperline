@@ -1,0 +1,1 @@
+{"resource_name":"hyperline","resource":"https://mcp.hyperline.co/mcp","authorization_servers":["https://api.hyperline.co"],"scopes_supported":["openid","email","offline_access","mcp"],"bearer_methods_supported":["header"],"resource_documentation":"https://docs.hyperline.co/api-reference/docs/authentication","x_api_key_supported":true}

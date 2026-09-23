@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Hyperline Billable Events Customers API
+  title: Hyperline Customers API
   description: The Hyperline API follows REST principles and uses JSON-encoded request and response payloads. It powers usage-based billing and subscription management for B2B SaaS - covering customers, products and plans, subscriptions, billable event ingestion, invoices, payments, credit notes, and webhooks. The full machine-readable specification is published by Hyperline at https://api.hyperline.co/openapi.
   termsOfService: https://www.hyperline.co/legal/terms
   contact:
@@ -135,13 +135,6 @@ paths:
         '200':
           description: Aggregated usage for the customer.
 components:
-  parameters:
-    IdParam:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
   schemas:
     Customer:
       type: object
@@ -159,6 +152,13 @@ components:
           type: string
         billing_email:
           type: string
+  parameters:
+    IdParam:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http
