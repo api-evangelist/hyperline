@@ -71,13 +71,6 @@ paths:
         '200':
           description: A list of webhook messages.
 components:
-  parameters:
-    IdParam:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
   schemas:
     WebhookEndpoint:
       type: object
@@ -91,6 +84,13 @@ components:
           type: array
           items:
             type: string
+  parameters:
+    IdParam:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

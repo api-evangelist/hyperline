@@ -104,6 +104,13 @@ paths:
         '202':
           description: Refresh accepted.
 components:
+  parameters:
+    IdParam:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
   schemas:
     Subscription:
       type: object
@@ -117,13 +124,6 @@ components:
         start_date:
           type: string
           format: date
-  parameters:
-    IdParam:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

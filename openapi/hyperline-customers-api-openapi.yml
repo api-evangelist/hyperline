@@ -135,6 +135,13 @@ paths:
         '200':
           description: Aggregated usage for the customer.
 components:
+  parameters:
+    IdParam:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
   schemas:
     Customer:
       type: object
@@ -152,13 +159,6 @@ components:
           type: string
         billing_email:
           type: string
-  parameters:
-    IdParam:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

@@ -44,6 +44,13 @@ paths:
         '200':
           description: The refunded transaction.
 components:
+  parameters:
+    IdParam:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
   schemas:
     Payment:
       type: object
@@ -56,13 +63,6 @@ components:
           type: integer
         currency:
           type: string
-  parameters:
-    IdParam:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http
