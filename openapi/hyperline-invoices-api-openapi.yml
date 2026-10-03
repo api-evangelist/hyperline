@@ -106,13 +106,6 @@ paths:
         '200':
           description: The invoice document.
 components:
-  parameters:
-    IdParam:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
   schemas:
     Invoice:
       type: object
@@ -127,6 +120,13 @@ components:
           type: string
         total:
           type: integer
+  parameters:
+    IdParam:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http
