@@ -79,6 +79,13 @@ paths:
         '201':
           description: The created price book.
 components:
+  parameters:
+    IdParam:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
   schemas:
     Product:
       type: object
@@ -91,13 +98,6 @@ components:
           type: string
         currency:
           type: string
-  parameters:
-    IdParam:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http
