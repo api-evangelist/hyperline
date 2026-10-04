@@ -33,6 +33,9 @@ accessModel:
   generated: '2026-07-22'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/hyperline.png
+x-docs-platform: mintlify
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-10-03
 tags:
 - Billing
 - Subscription
@@ -340,6 +343,9 @@ apis:
   - type: APIReference
     url: https://docs.hyperline.co/api-reference/endpoints/webhooks
 common:
+- type: CapabilityMap
+  url: capabilities/hyperline-capability-edges.yml
+  name: Hyperline Business Capability Map
 - type: AgenticAccess
   url: agentic-access/hyperline-agentic-access.yml
 - type: TrustCenter
