@@ -1,4 +1,4 @@
-# Hyperline (hyperline)
+# Hyperline
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,184 +66,136 @@
 
 Hyperline is a usage-based billing and subscription platform that helps B2B SaaS companies manage their entire quote-to-cash workflow. Its REST API covers customers, a product and plan catalog, subscriptions, real-time usage and event ingestion, invoicing, payments, credit notes, and webhooks for hybrid pricing models combining subscription and metered charges.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/hyperline/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/hyperline/refs/heads/main/apis.yml)
+**Areas:** Billing · Subscription · Usage-Based · Metering · Payments · Invoicing · FinOps
 
-## Tags
+## Hyperline on APIs.io
 
-- Billing
-- Subscriptions
-- Usage-Based
-- Metering
-- Payments
-- Invoicing
-- FinOps
+Everything profiled for Hyperline is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/hyperline/](https://apis.io/providers/hyperline/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (7)
 
-- **Created:** 2026-06-20
-- **Modified:** 2026-06-20
+- [Hyperline Billable Events API](https://apis.io/apis/hyperline/hyperline-billable-events-api/) — The Billable Events API from Hyperline — 2 operation(s) for billable events.
+- [Hyperline Customers API](https://apis.io/apis/hyperline/hyperline-customers-api/) — The Customers API from Hyperline — 5 operation(s) for customers.
+- [Hyperline Invoices API](https://apis.io/apis/hyperline/hyperline-invoices-api/) — The Invoices API from Hyperline — 6 operation(s) for invoices.
+- [Hyperline Payments API](https://apis.io/apis/hyperline/hyperline-payments-api/) — The Payments API from Hyperline — 2 operation(s) for payments.
+- [Hyperline Products API](https://apis.io/apis/hyperline/hyperline-products-api/) — The Products API from Hyperline — 3 operation(s) for products.
+- [Hyperline Subscriptions API](https://apis.io/apis/hyperline/hyperline-subscriptions-api/) — The Subscriptions API from Hyperline — 6 operation(s) for subscriptions.
+- [Hyperline Webhooks API](https://apis.io/apis/hyperline/hyperline-webhooks-api/) — The Webhooks API from Hyperline — 3 operation(s) for webhooks.
 
-## APIs
+### Published properties
 
-### Hyperline Customers API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Create, list, update, archive, and manage customers along with their payment methods, credits, features, segments, tax rates, valuation, and the self-serve customer portal.
+#### MCP servers (1)
 
-- **Human URL:** [https://docs.hyperline.co/api-reference/endpoints/customers](https://docs.hyperline.co/api-reference/endpoints/customers)
-- **Base URL:** `https://api.hyperline.co/v1`
+Model Context Protocol servers that expose the API to agents.
 
-#### Tags
+- [hyperline](https://apis.io/servers/hyperline/hyperline/)
 
-- Customers
-- Accounts
-- Credits
+#### Agentic access (1)
 
-#### Properties
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- [Documentation](https://docs.hyperline.co/api-reference/docs/getting-started)
-- [API Reference](https://docs.hyperline.co/api-reference/endpoints/customers)
-- [OpenAPI](openapi/hyperline-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/hyperline.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/hyperline.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Hyperline Agentic Access](https://apis.io/agentic-access/hyperline/hyperline-agentic-access/)
 
-### Hyperline Products & Plans API
+#### Collections (8)
 
-Manage the product and pricing catalog - products, price books, price configurations, features, coupons, and promotion codes - including draft and versioned catalog publishing.
+Postman and Open Collection request collections.
 
-- **Human URL:** [https://docs.hyperline.co/api-reference/endpoints/products](https://docs.hyperline.co/api-reference/endpoints/products)
-- **Base URL:** `https://api.hyperline.co/v1`
+- [Hyperline API](https://apis.io/collections/hyperline/open-hyperline/)
+- [Hyperline Billable Events API](https://apis.io/collections/hyperline/open-hyperline-billable-events-api/)
+- [Hyperline Billable Events Customers API](https://apis.io/collections/hyperline/open-hyperline-customers-api/)
+- [Hyperline Billable Events Invoices API](https://apis.io/collections/hyperline/open-hyperline-invoices-api/)
+- [Hyperline Billable Events Payments API](https://apis.io/collections/hyperline/open-hyperline-payments-api/)
+- [Hyperline Billable Events Products API](https://apis.io/collections/hyperline/open-hyperline-products-api/)
+- [Hyperline Billable Events Subscriptions API](https://apis.io/collections/hyperline/open-hyperline-subscriptions-api/)
+- [Hyperline Billable Events Webhooks API](https://apis.io/collections/hyperline/open-hyperline-webhooks-api/)
 
-#### Tags
+#### Security (3)
 
-- Products
-- Plans
-- Catalog
-- Pricing
+Authentication, trust centre, and vulnerability disclosure.
 
-#### Properties
+- [Hyperline Authentication](https://apis.io/security/hyperline/hyperline-authentication/)
+- [Hyperline Domain Security](https://apis.io/security/hyperline/hyperline-domain-security/)
+- [Hyperline Trust Center](https://apis.io/security/hyperline/hyperline-trust-center/)
 
-- [Documentation](https://docs.hyperline.co/api-reference/endpoints/products)
-- [API Reference](https://docs.hyperline.co/api-reference/endpoints/products)
-- [OpenAPI](openapi/hyperline-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/hyperline.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/hyperline.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Plans and pricing (1)
 
-### Hyperline Subscriptions API
+Published plans, tiers and prices.
 
-Create and manage subscriptions across their full lifecycle - activate, pause, cancel, renew, reinstate, schedule updates and phase transitions - plus subscription templates, transitions, and quotes (CPQ).
+- [Hyperline Plans Pricing](https://apis.io/plans/hyperline/hyperline-plans-pricing/)
 
-- **Human URL:** [https://docs.hyperline.co/api-reference/endpoints/subscriptions](https://docs.hyperline.co/api-reference/endpoints/subscriptions)
-- **Base URL:** `https://api.hyperline.co/v1`
+#### Rate limits (1)
 
-#### Tags
+Published request limits.
 
-- Subscriptions
-- Lifecycle
-- Quotes
+- [Hyperline Rate Limits](https://apis.io/rate-limits/hyperline/hyperline-rate-limits/)
 
-#### Properties
+#### FinOps (1)
 
-- [Documentation](https://docs.hyperline.co/api-reference/endpoints/subscriptions)
-- [API Reference](https://docs.hyperline.co/api-reference/endpoints/subscriptions)
-- [OpenAPI](openapi/hyperline-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/hyperline.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/hyperline.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+What the API costs to run, by operation.
 
-### Hyperline Usage & Events API
+- [Hyperline Finops](https://apis.io/finops/hyperline/hyperline-finops/)
 
-Ingest billable events (single or batch), retrieve and delete events, simulate prices, and read aggregated customer usage via aggregators with grouped, timeseries, and per-event breakdowns.
+## Where to find this API
 
-- **Human URL:** [https://docs.hyperline.co/api-reference/endpoints/billable-events](https://docs.hyperline.co/api-reference/endpoints/billable-events)
-- **Base URL:** `https://api.hyperline.co/v1`
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-#### Tags
-
-- Usage
-- Events
-- Metering
-- Ingestion
-
-#### Properties
-
-- [Documentation](https://docs.hyperline.co/api-reference/endpoints/billable-events)
-- [API Reference](https://docs.hyperline.co/api-reference/endpoints/billable-events)
-- [OpenAPI](openapi/hyperline-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/hyperline.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/hyperline.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Hyperline Invoices API
-
-Create, list, update, charge, void, and download invoices; manage invoice transactions, mark uncollectible, validate, and issue credit notes against invoices.
-
-- **Human URL:** [https://docs.hyperline.co/api-reference/endpoints/invoices](https://docs.hyperline.co/api-reference/endpoints/invoices)
-- **Base URL:** `https://api.hyperline.co/v1`
-
-#### Tags
-
-- Invoices
-- Credit Notes
-- Billing
-
-#### Properties
-
-- [Documentation](https://docs.hyperline.co/api-reference/endpoints/invoices)
-- [API Reference](https://docs.hyperline.co/api-reference/endpoints/invoices)
-- [OpenAPI](openapi/hyperline-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/hyperline.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/hyperline.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Hyperline Payments API
-
-Record payments and refund transactions across native payment provider integrations (Stripe, GoCardless, Mollie, Airwallex), plus bank accounts and customer wallets.
-
-- **Human URL:** [https://docs.hyperline.co/api-reference/endpoints/payments](https://docs.hyperline.co/api-reference/endpoints/payments)
-- **Base URL:** `https://api.hyperline.co/v1`
-
-#### Tags
-
-- Payments
-- Transactions
-- Refunds
-
-#### Properties
-
-- [Documentation](https://docs.hyperline.co/api-reference/endpoints/payments)
-- [API Reference](https://docs.hyperline.co/api-reference/endpoints/payments)
-- [OpenAPI](openapi/hyperline-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/hyperline.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/hyperline.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Hyperline Webhooks API
-
-Register and manage webhook endpoints and inspect delivered webhook messages to receive real-time notifications of billing lifecycle events.
-
-- **Human URL:** [https://docs.hyperline.co/api-reference/endpoints/webhooks](https://docs.hyperline.co/api-reference/endpoints/webhooks)
-- **Base URL:** `https://api.hyperline.co/v1`
-
-#### Tags
-
-- Webhooks
-- Events
-- Notifications
-
-#### Properties
-
-- [Documentation](https://docs.hyperline.co/api-reference/endpoints/webhooks)
-- [API Reference](https://docs.hyperline.co/api-reference/endpoints/webhooks)
-- [OpenAPI](openapi/hyperline-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/hyperline.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/hyperline.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [LinkedIn](https://www.linkedin.com/company/hyperline)
 - [Website](https://www.hyperline.co)
 - [Documentation](https://docs.hyperline.co)
-- [Plans](plans/hyperline-plans-pricing.yml)
-- [Rate Limits](rate-limits/hyperline-rate-limits.yml)
-- [Fin Ops](finops/hyperline-finops.yml)
+- [Blog](https://hyperline.co/resources/blog)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 27.3** — thin · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 68.3 |
+| Contract quality | 46.1 |
+| Contract governance | 0.0 |
+| Operational transparency | 5.3 |
+| Developer ergonomics | 32.1 |
+| Access clarity | 15.8 |
+
+**Agent readiness 45.6** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | verified |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 15.2** — Payments
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/hyperline/](https://apis.io/providers/hyperline/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Hyperline: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/hyperline/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
